@@ -8,8 +8,11 @@ body {
     align-items: center;
     justify-content: center;
     height: 100vh;
+    background-color: #000002;
 }
 
 canvas {
     display: block;
+    width: 100%;    
+    max-width: 1480px;
 }

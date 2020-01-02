@@ -11,10 +11,10 @@ let game = {
     ball: null,
     blocks: [],
     score: 0,
-    rows: 4,
-    cols: 8,
-    width: 640,
-    height: 360,
+    rows: 6,
+    cols: 10,
+    width: 1280,
+    height: 720,
     sprites: {
         background: null,
         ball: null,
@@ -24,8 +24,27 @@ let game = {
     sounds: {
         bump: null
     },
+    // initCanvasSize() {
+    //     let realWidth = window.innerWidth * window.devicePixelRatio;
+    //     let realHeight = window.innerHeight * window.devicePixelRatio;
+    //     let maxHeight = this.height;
+    //     let maxWidth = this.width;
+    //     // всегда полностью вписываем ширину
+    //     // значит конечная ширина - это maxWidth, тогда справедлива пропорция:
+    //     // realWidth / realHeight
+    //     // maxWidth / resultHeight
+    //     // resultHeight = maxWidth * realHeight / realWidth
+    //     // округляем вниз и отсекаем все, что выше maxWidth 
+    //     this.height = Math.min(Math.floor(maxWidth * realHeight / realWidth), maxHeight);
+    //     // responsive variant
+    //     // this.height = Math.floor(maxWidth * realHeight / realWidth);
+    //     this.canvas.width = this.width;
+    //     this.canvas.height = this.height;
+    // },
     init() {
-        this.ctx = document.getElementById('canvas').getContext('2d');
+        this.canvas = document.getElementById("canvas");
+        this.ctx = this.canvas.getContext("2d");
+        // this.initCanvasSize();
         this.setIvents();
         this.setTextFont();
     },
@@ -42,7 +61,7 @@ let game = {
         });
     },
     setTextFont() {
-        this.ctx.font = '18px sans-serif';
+        this.ctx.font = '28px sans-serif';
         this.ctx.fillStyle = '#FFFFFF';
     },
     preload(callback) {
@@ -78,10 +97,10 @@ let game = {
             for (let col = 0; col < this.cols; col++) {
                 this.blocks.push({
                     active: true,
-                    width: 60,
-                    height: 20,
-                    x: 64 * col + 65,
-                    y: 24 * row + 35
+                    width: 111,
+                    height: 39,
+                    x: 113 * col + 70,
+                    y: 42 * row + 90
                 });
             }
         }
@@ -131,7 +150,7 @@ let game = {
         this.ctx.drawImage(this.sprites.ball, this.ball.frame * this.ball.width, 0, this.ball.width, this.ball.height, this.ball.x, this.ball.y, this.ball.width, this.ball.height);
         this.ctx.drawImage(this.sprites.platform, this.platform.x, this.platform.y);
         this.renderBlocks();
-        this.ctx.fillText(`Score: ${this.score} `, 15, 22);
+        this.ctx.fillText(`Score: ${this.score} `, 70, 46);
     },
     renderBlocks() {
         for (let block of this.blocks) {
@@ -158,14 +177,14 @@ let game = {
     }
 };
 game.ball = {
-    velocity: 4,  
+    velocity: 10,  
     dy: 0,
     dx: 0,
     frame: 0,
-    x: 320,
-    y: 280,
-    width: 20,
-    height: 20,
+    x: game.width / 2 - 20,
+    y: game.height - 85,
+    width: 40,
+    height: 40,
     start() {
         this.dy = -this.velocity;
         this.dx = game.random(-this.velocity, +this.velocity);
@@ -246,12 +265,12 @@ game.ball = {
     }
 };
 game.platform = {
-    velocity: 6, // max speed
+    velocity: 15, // max speed
     dx: 0, // speed
-    x: 280,
-    y: 300,
-    width: 100,
-    height: 14,
+    x: game.width / 2 - 125,
+    y: game.height - 45,
+    width: 251,
+    height: 41,
     ball: game.ball,
     fire() {
         if (this.ball) {
