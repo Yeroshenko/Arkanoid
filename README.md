@@ -1,1 +1,3 @@
 # Arkanoid
+
+![](preview.png)
