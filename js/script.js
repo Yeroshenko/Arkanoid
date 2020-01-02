@@ -24,27 +24,9 @@ let game = {
     sounds: {
         bump: null
     },
-    // initCanvasSize() {
-    //     let realWidth = window.innerWidth * window.devicePixelRatio;
-    //     let realHeight = window.innerHeight * window.devicePixelRatio;
-    //     let maxHeight = this.height;
-    //     let maxWidth = this.width;
-    //     // всегда полностью вписываем ширину
-    //     // значит конечная ширина - это maxWidth, тогда справедлива пропорция:
-    //     // realWidth / realHeight
-    //     // maxWidth / resultHeight
-    //     // resultHeight = maxWidth * realHeight / realWidth
-    //     // округляем вниз и отсекаем все, что выше maxWidth 
-    //     this.height = Math.min(Math.floor(maxWidth * realHeight / realWidth), maxHeight);
-    //     // responsive variant
-    //     // this.height = Math.floor(maxWidth * realHeight / realWidth);
-    //     this.canvas.width = this.width;
-    //     this.canvas.height = this.height;
-    // },
     init() {
         this.canvas = document.getElementById("canvas");
         this.ctx = this.canvas.getContext("2d");
-        // this.initCanvasSize();
         this.setIvents();
         this.setTextFont();
     },
