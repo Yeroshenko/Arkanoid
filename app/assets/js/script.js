@@ -11,8 +11,8 @@ let game = {
     ball: null,
     blocks: [],
     score: 0,
-    rows: 6,
-    cols: 10,
+    rows: 6, // 6
+    cols: 10, // 10
     width: 1280,
     height: 720,
     sprites: {
@@ -64,13 +64,13 @@ let game = {
     preloadSprites(onResourceLoad) {
         for (let key in this.sprites) {
             this.sprites[key] = new Image();
-            this.sprites[key].src = `img/${key}.png`;
+            this.sprites[key].src = `assets/img/${key}.png`;
             this.sprites[key].addEventListener('load', onResourceLoad);
         }
     },
     preloadAudio(onResourceLoad) {
         for (let key in this.sounds) {
-            this.sounds[key] = new Audio(`sounds/${key}.mp3`);
+            this.sounds[key] = new Audio(`assets/sounds/${key}.mp3`);
             this.sounds[key].addEventListener('canplaythrough', onResourceLoad, {once: true});
         }
     },
