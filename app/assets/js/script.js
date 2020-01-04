@@ -1,6 +1,8 @@
 const KEYS = {
-    LEFT: 37,
-    RIGHT: 39,
+    LEFT: 65,
+    RIGHT: 68,
+    LEFTARR: 37,
+    RIGHTARR: 39,
     SPACE: 32
 };
 
@@ -34,7 +36,7 @@ let game = {
         window.addEventListener('keydown', (e) => {
             if (e.keyCode === KEYS.SPACE) {
                 this.platform.fire();
-            } else if (e.keyCode === KEYS.LEFT || e.keyCode === KEYS.RIGHT) {
+            } else if (e.keyCode === KEYS.LEFT || e.keyCode === KEYS.RIGHT || e.keyCode === KEYS.LEFTARR || e.keyCode === KEYS.RIGHTARR) {
                 this.platform.start(e.keyCode);
             }
         });
@@ -261,9 +263,9 @@ game.platform = {
         }
     },
     start(direction) {
-        if (direction === KEYS.LEFT) {
+        if (direction === KEYS.LEFT || direction === KEYS.LEFTARR) {
             this.dx = -this.velocity;
-        } else if (direction === KEYS.RIGHT) {
+        } else if (direction === KEYS.RIGHT || direction === KEYS.RIGHTARR) {
             this.dx = this.velocity;
         }
     },
